@@ -12,6 +12,9 @@ fixed = imread("fixed.jpg");
 cpselect(fixed,moving);
 % save the movingPoints and fixedPoints for registration
 
+% load pre-selected point pairs
+%load fixedPoints.mat; load movingPoints.mat; 
+
 %% Registration
 tform = fitgeotform2d(movingPoints,fixedPoints,"polynomial",2); 
 Rfixed = imref2d(size(fixed));
