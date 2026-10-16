@@ -11,9 +11,7 @@ fixed = imread("fixed.jpg");
 % select control points
 cpselect(fixed,moving);
 % save the movingPoints and fixedPoints for registration
-
-% load pre-selected point pairs
-%load fixedPoints.mat; load movingPoints.mat; 
+load movingPoints.mat; load fixedPoints.mat;
 
 %% Registration
 tform = fitgeotform2d(movingPoints,fixedPoints,"polynomial",2); 
@@ -86,14 +84,14 @@ ori = deformed .* moving;
 imshow(ori);
 aMUSE = deformed .* moving(:,:,:); 
 figure; imagesc(aMUSE); 
-imwrite(aMUSE,'annotation.jpg');
+%imwrite(aMUSE,'annotation.jpg');
 
 %% Similarity Score Calculation
 % load manual annotated images and extract annotation area
 im1 = imread("manual.jpg");
 im2 = imread("annotation.jpg");
 [deepS] = compute_easysimilarity(im1, im2);
-fprintf('CNN feature and similarity: %f\n', deepS);
+fprintf('CNN feature similarity: %f\n', deepS);
 
 img1 = im1;
 img1 = img1(:,:,1);
@@ -116,5 +114,5 @@ figure; imshow(img2);
 % call the function to calculate the similarity scores
 [diceScore jaccardIndex precision recall hd] = computeScore(img1, img2);
 fprintf('Similarity Score:\n Dice Score: %f\n Jaccard Index: %f\n Precision: %f\n Recall: %f\n  haur dis: %f\n boundary:%f\n', ...
-    diceScore, jaccardIndex, precision, recall, hd, boundaryIoU);
+    diceScore, jaccardIndex, precision, recall, hd);
 
