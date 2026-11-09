@@ -113,6 +113,6 @@ figure; imshow(img2);
 
 % call the function to calculate the similarity scores
 [diceScore jaccardIndex precision recall hd] = computeScore(img1, img2);
-fprintf('Similarity Score:\n Dice Score: %f\n Jaccard Index: %f\n Precision: %f\n Recall: %f\n  haur dis: %f\n, ...
+fprintf('Similarity Score:\n Dice Score: %f\n Jaccard Index: %f\n Precision: %f\n Recall: %f\n  haur dis: %f\n', ...
     diceScore, jaccardIndex, precision, recall, hd);
 
